@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="card text-center">
+    <h1 class="text-success"><%= @cocktail.name %></h1>
+    <h4>Cocktail Name: <%= @cocktail.name %></h4>
+    <%# <h4>Ingredients: <%= @cocktail.?? %></h4>
+    <br>
+    <h4>Ingredients:</h4>
+    <ul class="list">
+    <% @cocktail.doses.each do |dose| %>
+      <li><%= dose.ingredient.name %></li>
+      <%= link_to "Delete", dose_path(dose), class: "btn btn-danger btn-xs", method: :delete %>
+    <% end %>
+    </ul>
+  <div class="d-flex justify-content-center">
+      <%# <%= link_to "Add new cocktail", cocktail_path(@cocktail), class:"btn btn-primary" %>
+      <%= link_to "Back", cocktails_path, class:"btn btn-success ml-3" %>
+  </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6 offset-sm-3">
+      <%= simple_form_for [@cocktail, @dose] do |f| %>
+        <%= f.input :description %>
+        <%= f.association :ingredient %>
+        <%= f.submit "Add", class: "btn btn-primary" %>
+      <% end %>
+    </div>
+  </div>
+</div>
