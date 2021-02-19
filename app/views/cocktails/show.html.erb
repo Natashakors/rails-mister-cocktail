@@ -2,7 +2,10 @@
   <div class="card text-center">
     <h1 class="text-success"><%= @cocktail.name %></h1>
     <h4>Cocktail Name: <%= @cocktail.name %></h4>
-    <%# <h4>Ingredients: <%= @cocktail.?? %></h4>
+    <% if @cocktail.photo.attached?%>
+    <%= cl_image_tag  @cocktail.photo.key height: 150, width: 150, crop: :fill%>
+    <% end %>
+
     <br>
     <h4>Ingredients:</h4>
     <ul class="list">
