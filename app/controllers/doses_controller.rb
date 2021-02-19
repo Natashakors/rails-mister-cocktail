@@ -10,11 +10,11 @@ class DosesController < ApplicationController
     # @cocktail = Cocktail.find(params[:cocktail_id])
     @dose = Dose.new(dose_params)
     @dose.cocktail = @cocktail
-    @dose.ingredient = Ingredient.find(params[:dose][:ingredient]) unless params[:dose][:ingredient].blank?
+    # @dose.ingredient = Ingredient.find(params[:dose][:ingredient]) unless params[:dose][:ingredient].blank?
     if @dose.save
       redirect_to cocktail_path(@cocktail)
     else
-      render :new
+      render "cocktails/show"
     end
   end
   def destroy
@@ -32,7 +32,7 @@ class DosesController < ApplicationController
   end
 
   def dose_params
-    params.require(:dose).permit(:description)
+    params.require(:dose).permit(:ingredient_id, :description)
   end
 
 end

@@ -20,12 +20,12 @@ class CocktailsController < ApplicationController
       render :new
     end
   end
+
   def destroy
     @cocktail = Cocktail.find(params[:id])
     @cocktail.destroy
     redirect_to @coctail, notice: 'Cocktail was successfully deleted!.'
   end
-
 
   private
 
